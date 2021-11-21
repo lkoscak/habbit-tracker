@@ -1,0 +1,20 @@
+.habbit {
+	display: flex;
+	margin-bottom: 0.5rem;
+}
+.habbits-header {
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid;
+}
+.habbit-values {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+	justify-items: center;
+	align-items: center;
+	column-gap: 2px;
+	width: 90%;
+}
+.habbit-label {
+	width: 10%;
+}

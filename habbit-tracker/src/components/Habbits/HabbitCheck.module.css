@@ -1,0 +1,12 @@
+.habbit-check {
+	background-color: #fef5ed;
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 5px;
+	border: 1px solid #adc2a9;
+	cursor: pointer;
+}
+
+.habbit-check-checked {
+	background-color: #99a799;
+}
