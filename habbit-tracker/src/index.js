@@ -2,6 +2,12 @@ import ReactDOM from "react-dom";
 
 import "./index.css";
 
+import HabbitProvider from "./store/HabbitProvider";
 import App from "./App";
 
-ReactDOM.render(<App></App>, document.getElementById("root"));
+ReactDOM.render(
+	<HabbitProvider>
+		<App></App>
+	</HabbitProvider>,
+	document.getElementById("root")
+);

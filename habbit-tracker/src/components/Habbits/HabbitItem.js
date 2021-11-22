@@ -2,9 +2,22 @@ import styles from "./HabbitItem.module.css";
 
 import HabbitCheck from "./HabbitCheck";
 
-const HabbitItem = ({ label, habitValues }) => {
-	const habitCheckItems = habitValues.map((item) => (
-		<HabbitCheck value={item.value}></HabbitCheck>
+const HabbitItem = ({
+	label,
+	habbitValues,
+	onHabbitCheckedHandler,
+	onHabbitUnCheckedHandler,
+}) => {
+	const habitCheckItems = habbitValues.map((item, index) => (
+		<HabbitCheck
+			key={index}
+			value={item.value}
+			onClickHandler={
+				item.value
+					? onHabbitUnCheckedHandler.bind(null, index)
+					: onHabbitCheckedHandler.bind(null, index)
+			}
+		></HabbitCheck>
 	));
 	return (
 		<div className={styles.habbit}>

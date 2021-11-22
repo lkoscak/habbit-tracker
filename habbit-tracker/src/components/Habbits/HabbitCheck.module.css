@@ -5,8 +5,13 @@
 	border-radius: 5px;
 	border: 1px solid #adc2a9;
 	cursor: pointer;
+	transition: background-color 0.3s ease-in;
+}
+
+.habbit-check:hover {
+	background-color: #99a799;
 }
 
 .habbit-check-checked {
-	background-color: #99a799;
+	background-color: #66806a;
 }

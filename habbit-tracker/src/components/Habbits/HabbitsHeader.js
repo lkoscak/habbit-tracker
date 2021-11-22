@@ -2,7 +2,7 @@ import styles from "./HabbitItem.module.css";
 
 const HabbitsHeader = ({ numOfDays }) => {
 	const headerItems = [...Array(numOfDays).keys()].map((item) => (
-		<div>{`${item + 1}.`}</div>
+		<div key={item}>{`${item + 1}.`}</div>
 	));
 	return (
 		<div className={`${styles.habbit} ${styles["habbits-header"]}`}>
