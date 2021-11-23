@@ -43,6 +43,21 @@ const habbitReducer = (state, action) => {
 			}),
 		};
 	}
+	if (action.type === "ADD_HABBIT") {
+		const updatedHabbits = [...state.habbits];
+		updatedHabbits.push(action.payload);
+		return {
+			habbits: updatedHabbits,
+			months: state.months.map((month) => {
+				return {
+					...month,
+					days: month.days.map((day) => {
+						return [...day];
+					}),
+				};
+			}),
+		};
+	}
 	return state;
 };
 

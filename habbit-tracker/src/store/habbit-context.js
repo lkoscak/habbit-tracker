@@ -5,6 +5,7 @@ const habbitContext = React.createContext({
 	months: [],
 	checkHabbit: (month, day, habbit) => {},
 	unCheckHabbit: (month, day, habbit) => {},
+	addHabbit: (habbit) => {},
 });
 
 export default habbitContext;

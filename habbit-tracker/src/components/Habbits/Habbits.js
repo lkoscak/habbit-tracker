@@ -1,10 +1,9 @@
-import styles from "./Habbits.module.css";
-
 import useHabbitContext from "../../hooks/use-habbit-context";
 
 import Card from "../UI/Card";
 import HabbitsHeader from "./HabbitsHeader";
 import HabbitItem from "./HabbitItem";
+import HabbitForm from "./HabbitForm";
 
 const Habbits = () => {
 	const habbitCtx = useHabbitContext();
@@ -13,6 +12,13 @@ const Habbits = () => {
 	};
 	const onUnCheckedHandler = (month, habbit, day) => {
 		habbitCtx.unCheckHabbit(month, day, habbit);
+	};
+	const onNewHabbitCreatedHandler = (name) => {
+		const newHabbit = {
+			id: Math.random(),
+			name,
+		};
+		habbitCtx.addHabbit(newHabbit);
 	};
 	const habbitItems = habbitCtx.habbits.map((habbit) => {
 		const habbitValues = habbitCtx.months
@@ -39,12 +45,11 @@ const Habbits = () => {
 		);
 	});
 	return (
-		<section className={styles.habbits}>
-			<Card backgroundColor="#ADC2A9">
-				<HabbitsHeader numOfDays={30}></HabbitsHeader>
-				{habbitItems}
-			</Card>
-		</section>
+		<Card backgroundColor="#ADC2A9">
+			<HabbitsHeader numOfDays={30}></HabbitsHeader>
+			{habbitItems}
+			<HabbitForm onNewHabbitCreated={onNewHabbitCreatedHandler}></HabbitForm>
+		</Card>
 	);
 };
 export default Habbits;

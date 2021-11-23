@@ -44,12 +44,16 @@ const HabbitProvider = (props) => {
 			payload: { monthId: month, day, habbitId: habbit },
 		});
 	};
+	const addHabbitHandler = (habbit) => {
+		dispatchHabbitAction({ type: "ADD_HABBIT", payload: habbit });
+	};
 	return (
 		<habbitContext.Provider
 			value={{
 				...habbitState,
 				checkHabbit: checkHabbitHandler,
 				unCheckHabbit: unCheckHabbitHandler,
+				addHabbit: addHabbitHandler,
 			}}
 		>
 			{props.children}
