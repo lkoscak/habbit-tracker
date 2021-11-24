@@ -1,1 +1,6 @@
-
+.habbits-container {
+	position: relative;
+}
+.habbits {
+	margin-top: 2rem;
+}

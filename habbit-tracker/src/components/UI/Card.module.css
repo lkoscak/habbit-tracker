@@ -1,11 +1,25 @@
 .card {
-	padding: 1rem;
+	padding: 0 1rem 1rem 1rem;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 	border-radius: 14px;
 	width: 90%;
 	margin: 0 auto;
 	color: white;
 	max-height: 60%;
-	overflow: scroll;
+	overflow-y: scroll;
 	margin-top: 10rem;
+	scroll-behavior: smooth;
+	scroll-padding-top: 9rem;
+}
+.card::-webkit-scrollbar {
+	width: 0.8rem;
+}
+
+.card::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.card::-webkit-scrollbar-thumb {
+	background: #fff;
+	border-radius: 5rem;
 }

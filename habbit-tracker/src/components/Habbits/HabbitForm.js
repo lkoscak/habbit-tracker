@@ -2,8 +2,9 @@ import { useRef } from "react";
 
 import styles from "./HabbitForm.module.css";
 
-const HabbitForm = ({ onNewHabbitCreated }) => {
+const HabbitForm = ({ onNewHabbitCreated, numOfHabbits }) => {
 	const habbitInputRef = useRef();
+	const maxNumberOfHabbitsReached = numOfHabbits === 10;
 	const validateInput = (value) => {
 		return {
 			isValid: value.trim() !== "",
@@ -19,23 +20,31 @@ const HabbitForm = ({ onNewHabbitCreated }) => {
 		}
 	};
 	return (
-		<div className={`${styles["form-group"]} ${styles.field}`}>
-			<input
-				type="input"
-				className={styles["form-field"]}
-				placeholder="New habbit"
-				name="habbit"
-				id="habbit"
-				spellCheck="false"
-				autoComplete="off"
-				maxLength="20"
-				onKeyDown={onKeyDownHandler}
-				ref={habbitInputRef}
-			/>
-			<label for="habbit" className={styles["form-label"]}>
-				New habbit
-			</label>
-		</div>
+		<>
+			{maxNumberOfHabbitsReached ? (
+				<p>Good job! Max number of habbits reached :D</p>
+			) : (
+				<div className={`${styles["form-group"]}`}>
+					<input
+						disabled={maxNumberOfHabbitsReached ? "disabled" : ""}
+						type="input"
+						className={styles["form-field"]}
+						placeholder="New habbit"
+						name="habbit"
+						id="habbit"
+						spellCheck="false"
+						autoComplete="off"
+						maxLength="20"
+						onKeyDown={onKeyDownHandler}
+						ref={habbitInputRef}
+					/>
+
+					<label htmlFor="habbit" className={styles["form-label"]}>
+						New habbit
+					</label>
+				</div>
+			)}
+		</>
 	);
 };
 

@@ -1,5 +1,7 @@
 import useHabbitContext from "../../hooks/use-habbit-context";
 
+import styles from "./Habbits.module.css";
+
 import Card from "../UI/Card";
 import HabbitsHeader from "./HabbitsHeader";
 import HabbitItem from "./HabbitItem";
@@ -7,6 +9,7 @@ import HabbitForm from "./HabbitForm";
 
 const Habbits = () => {
 	const habbitCtx = useHabbitContext();
+	const numOfHabbits = habbitCtx.habbits.length;
 	const onCheckedHandler = (month, habbit, day) => {
 		habbitCtx.checkHabbit(month, day, habbit);
 	};
@@ -45,11 +48,18 @@ const Habbits = () => {
 		);
 	});
 	return (
-		<Card backgroundColor="#ADC2A9">
-			<HabbitsHeader numOfDays={30}></HabbitsHeader>
-			{habbitItems}
-			<HabbitForm onNewHabbitCreated={onNewHabbitCreatedHandler}></HabbitForm>
-		</Card>
+		<>
+			<Card backgroundColor="#ADC2A9">
+				<div className={styles["habbits-container"]}>
+					<HabbitsHeader numOfDays={30}></HabbitsHeader>
+					<div className={styles.habbits}>{habbitItems}</div>
+					<HabbitForm
+						onNewHabbitCreated={onNewHabbitCreatedHandler}
+						numOfHabbits={numOfHabbits}
+					></HabbitForm>
+				</div>
+			</Card>
+		</>
 	);
 };
 export default Habbits;
