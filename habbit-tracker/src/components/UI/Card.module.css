@@ -7,7 +7,6 @@
 	color: white;
 	max-height: 60%;
 	overflow-y: scroll;
-	margin-top: 10rem;
 	scroll-behavior: smooth;
 	scroll-padding-top: 9rem;
 }

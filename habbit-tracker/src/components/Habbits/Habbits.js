@@ -7,7 +7,7 @@ import HabbitsHeader from "./HabbitsHeader";
 import HabbitItem from "./HabbitItem";
 import HabbitForm from "./HabbitForm";
 
-const Habbits = () => {
+const Habbits = ({ monthId, numOfDays }) => {
 	const habbitCtx = useHabbitContext();
 	const numOfHabbits = habbitCtx.habbits.length;
 	const onCheckedHandler = (month, habbit, day) => {
@@ -25,7 +25,7 @@ const Habbits = () => {
 	};
 	const habbitItems = habbitCtx.habbits.map((habbit) => {
 		const habbitValues = habbitCtx.months
-			.find((month) => month.id === "11_2021")
+			.find((month) => month.id === monthId)
 			.days.map((day) => {
 				return { value: day.includes(habbit.id) };
 			});
@@ -34,14 +34,10 @@ const Habbits = () => {
 				key={habbit.id}
 				label={habbit.name}
 				habbitValues={habbitValues}
-				onHabbitCheckedHandler={onCheckedHandler.bind(
-					null,
-					"11_2021",
-					habbit.id
-				)}
+				onHabbitCheckedHandler={onCheckedHandler.bind(null, monthId, habbit.id)}
 				onHabbitUnCheckedHandler={onUnCheckedHandler.bind(
 					null,
-					"11_2021",
+					monthId,
 					habbit.id
 				)}
 			></HabbitItem>
@@ -51,7 +47,7 @@ const Habbits = () => {
 		<>
 			<Card backgroundColor="#ADC2A9">
 				<div className={styles["habbits-container"]}>
-					<HabbitsHeader numOfDays={30}></HabbitsHeader>
+					<HabbitsHeader numOfDays={numOfDays}></HabbitsHeader>
 					<div className={styles.habbits}>{habbitItems}</div>
 					<HabbitForm
 						onNewHabbitCreated={onNewHabbitCreatedHandler}

@@ -1,0 +1,20 @@
+.month-filter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 3rem;
+}
+.month-filter h1 {
+	color: #66806a;
+}
+.month-filter .picker {
+	font-size: 1.8rem;
+	margin: 1rem;
+	cursor: pointer;
+	color: #99a799;
+	transition: color 0.3s ease-in-out;
+}
+
+.picker:hover {
+	color: #66806a;
+}
