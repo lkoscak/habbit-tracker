@@ -6,6 +6,9 @@
 }
 .month-filter h1 {
 	color: #66806a;
+	min-width: 15rem;
+	text-align: center;
+	user-select: none;
 }
 .month-filter .picker {
 	font-size: 1.8rem;

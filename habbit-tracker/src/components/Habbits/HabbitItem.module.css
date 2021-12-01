@@ -21,4 +21,5 @@
 }
 .habbit-label {
 	width: 10%;
+	user-select: none;
 }
