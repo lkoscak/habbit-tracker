@@ -7,6 +7,7 @@ const HabbitItem = ({
 	habbitValues,
 	onHabbitCheckedHandler,
 	onHabbitUnCheckedHandler,
+	onHabbitRemove,
 }) => {
 	const habitCheckItems = habbitValues.map((item, index) => (
 		<HabbitCheck
@@ -21,7 +22,12 @@ const HabbitItem = ({
 	));
 	return (
 		<div className={styles.habbit}>
-			<span className={styles["habbit-label"]}>{label}</span>
+			<span
+				className={`${styles["habbit-label"]} ${styles["habbit-label-removable"]}`}
+				onClick={onHabbitRemove}
+			>
+				{label}
+			</span>
 			<div className={styles["habbit-values"]}>{habitCheckItems}</div>
 		</div>
 	);

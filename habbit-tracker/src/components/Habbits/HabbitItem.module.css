@@ -23,3 +23,13 @@
 	width: 10%;
 	user-select: none;
 }
+.habbit-label-removable {
+	cursor: pointer;
+	text-decoration: line-through;
+	text-decoration-color: transparent;
+	transition: text-decoration-color 0.3s ease-in;
+}
+.habbit-label-removable:hover {
+	text-decoration: line-through;
+	text-decoration-color: #c85c5c;
+}

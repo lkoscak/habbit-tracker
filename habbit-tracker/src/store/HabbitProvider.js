@@ -1,45 +1,19 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
+
+import moment from "moment";
+
+import LocalStorage from "./local-storage-helper";
 
 import habbitContext from "./habbit-context";
 import habbitReducer from "./habbit-reducer";
 
 const defaultHabbitState = {
-	habbits: [
-		{
-			id: "h1",
-			name: "Habbit 1",
-		},
-		{
-			id: "h2",
-			name: "Habbit 2",
-		},
-	],
+	habbits: [],
 	months: [
 		{
-			id: "10_2021",
-			days: [...Array(31).keys()].map((key) => {
-				const array = [];
-				if (key % 3 === 0) array.push("h1");
-				if (key % 4 === 0) array.push("h2");
-				return array;
-			}),
-		},
-		{
-			id: "11_2021",
-			days: [...Array(30).keys()].map((key) => {
-				const array = [];
-				if (key % 2 === 0) array.push("h1");
-				if (key % 5 === 0) array.push("h2");
-				return array;
-			}),
-		},
-		{
-			id: "12_2021",
-			days: [...Array(31).keys()].map((key) => {
-				const array = [];
-				if (key % 4 === 0) array.push("h1");
-				if (key % 2 === 0) array.push("h2");
-				return array;
+			id: `${moment().month() + 1}_${moment().year()}`,
+			days: [...Array(moment().daysInMonth()).keys()].map((_key) => {
+				return [];
 			}),
 		},
 	],
@@ -50,6 +24,20 @@ const HabbitProvider = (props) => {
 		habbitReducer,
 		defaultHabbitState
 	);
+
+	useEffect(() => {
+		const initialHabbitState = LocalStorage.get("habbitTrackerData");
+		if (initialHabbitState) {
+			dispatchHabbitAction({
+				type: "SET_INITIAL",
+				payload: initialHabbitState,
+			});
+		}
+	}, []);
+	useEffect(() => {
+		LocalStorage.set("habbitTrackerData", habbitState);
+	}, [habbitState]);
+
 	const checkHabbitHandler = (month, day, habbit) => {
 		dispatchHabbitAction({
 			type: "CHECK",
@@ -65,6 +53,9 @@ const HabbitProvider = (props) => {
 	const addHabbitHandler = (habbit) => {
 		dispatchHabbitAction({ type: "ADD_HABBIT", payload: habbit });
 	};
+	const removeHabbitHandler = (habbitId) => {
+		dispatchHabbitAction({ type: "REMOVE_HABBIT", payload: habbitId });
+	};
 	const addMonthHandler = (month) => {
 		dispatchHabbitAction({ type: "ADD_MONTH", payload: month });
 	};
@@ -75,6 +66,7 @@ const HabbitProvider = (props) => {
 				checkHabbit: checkHabbitHandler,
 				unCheckHabbit: unCheckHabbitHandler,
 				addHabbit: addHabbitHandler,
+				removeHabbit: removeHabbitHandler,
 				addMonth: addMonthHandler,
 			}}
 		>

@@ -23,6 +23,9 @@ const Habbits = ({ monthId, numOfDays }) => {
 		};
 		habbitCtx.addHabbit(newHabbit);
 	};
+	const onHabbitRemoveHandler = (habbitId) => {
+		habbitCtx.removeHabbit(habbitId);
+	};
 	const habbitItems = habbitCtx.habbits.map((habbit) => {
 		const habbitValues = habbitCtx.months
 			.find((month) => month.id === monthId)
@@ -40,6 +43,7 @@ const Habbits = ({ monthId, numOfDays }) => {
 					monthId,
 					habbit.id
 				)}
+				onHabbitRemove={onHabbitRemoveHandler.bind(null, habbit.id)}
 			></HabbitItem>
 		);
 	});
