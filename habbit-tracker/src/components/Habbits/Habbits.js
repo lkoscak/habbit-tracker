@@ -1,3 +1,5 @@
+import { useCallback } from "react";
+
 import useHabbitContext from "../../hooks/use-habbit-context";
 
 import styles from "./Habbits.module.css";
@@ -16,13 +18,16 @@ const Habbits = ({ monthId, numOfDays }) => {
 	const onUnCheckedHandler = (month, habbit, day) => {
 		habbitCtx.unCheckHabbit(month, day, habbit);
 	};
-	const onNewHabbitCreatedHandler = (name) => {
-		const newHabbit = {
-			id: Math.random(),
-			name,
-		};
-		habbitCtx.addHabbit(newHabbit);
-	};
+	const onNewHabbitCreatedHandler = useCallback(
+		(name) => {
+			const newHabbit = {
+				id: Math.random(),
+				name,
+			};
+			habbitCtx.addHabbit(newHabbit);
+		},
+		[habbitCtx]
+	);
 	const onHabbitRemoveHandler = (habbitId) => {
 		habbitCtx.removeHabbit(habbitId);
 	};

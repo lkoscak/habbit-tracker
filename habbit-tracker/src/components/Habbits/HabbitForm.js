@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 
 import styles from "./HabbitForm.module.css";
 
 const HabbitForm = ({ onNewHabbitCreated, numOfHabbits }) => {
+	console.log(numOfHabbits);
 	const habbitInputRef = useRef();
 	const maxNumberOfHabbitsReached = numOfHabbits === 10;
 	const validateInput = (value) => {
@@ -48,4 +49,4 @@ const HabbitForm = ({ onNewHabbitCreated, numOfHabbits }) => {
 	);
 };
 
-export default HabbitForm;
+export default React.memo(HabbitForm);
