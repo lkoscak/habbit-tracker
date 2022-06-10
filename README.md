@@ -4,6 +4,6 @@
 
 ## Live version at: https://habbits-tracker-f3810.web.app/
 
-![Preview](./model-shwab.png)
+![Preview](./schwab.jpg)
 
 ![Preview](./screenshoot.png)
